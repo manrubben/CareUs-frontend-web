@@ -3,6 +3,7 @@ import React from "react";
 import axios from "axios";
 import '../App.css'
 import {useNavigate} from "react-router-dom";
+import {baseURL} from "../helpers/IPConfig";
 
 
 function GestionarPersonasDependientes() {
@@ -12,7 +13,7 @@ function GestionarPersonasDependientes() {
     let navigate = useNavigate();
 
     useEffect(() => {
-        axios.get("http://localhost:3001/personasDependientes",
+        axios.get(`${baseURL}/personasDependientes`,
             {headers: {accessToken: localStorage.getItem("accessToken"),}})
             .then((response) => {
                 setListOfPersonasDependientes(response.data);

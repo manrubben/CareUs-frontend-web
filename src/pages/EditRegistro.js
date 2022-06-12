@@ -4,6 +4,7 @@ import axios from "axios";
 import {AuthContext} from "../helpers/AuthContext";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as Yup from "yup";
+import {baseURL} from "../helpers/IPConfig";
 
 function EditRegistros(){
 
@@ -22,14 +23,14 @@ function EditRegistros(){
 
     useEffect(() => {
 
-        axios.get(`http://localhost:3001/registrosDiarios/showRegistro/${id}?fecha=${fechaString}`,
+        axios.get(`${baseURL}/registrosDiarios/showRegistro/${id}?fecha=${fechaString}`,
             {headers: {accessToken: localStorage.getItem("accessToken"),}})
             .then((response) => {
                 setRegistro(response.data);
             });
 
 
-        axios.get(`http://localhost:3001/registrosDiarios/auxiliarRegistro/${id}?fecha=${fechaString}`,
+        axios.get(`${baseURL}/registrosDiarios/auxiliarRegistro/${id}?fecha=${fechaString}`,
             {headers: {accessToken: localStorage.getItem("accessToken")},
 
             })
@@ -79,7 +80,7 @@ function EditRegistros(){
 
     const editRegistro = (data) => {
 
-        axios.put(`http://localhost:3001/registrosDiarios/registro/edit/${registroId}`, data,
+        axios.put(`${baseURL}/registrosDiarios/registro/edit/${registroId}`, data,
             {headers: {accessToken: localStorage.getItem("accessToken"),}})
             .then((response) => {
                 if (response.data.error) {
@@ -93,7 +94,7 @@ function EditRegistros(){
 
             const auxiliarId = authState.id;
 
-            axios.post(`http://localhost:3001/registrosDiarios/addAuxiliarRegistro/${id}`, {auxiliarId},
+            axios.post(`${baseURL}/registrosDiarios/addAuxiliarRegistro/${id}`, {auxiliarId},
                 {headers: {accessToken: localStorage.getItem("accessToken"),}})
                 .then((response) => {
 

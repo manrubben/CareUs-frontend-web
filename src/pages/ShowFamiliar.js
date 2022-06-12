@@ -1,6 +1,7 @@
 import {useNavigate, useParams} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import axios from "axios";
+import {baseURL} from "../helpers/IPConfig";
 
 
 function ShowFamiliar() {
@@ -9,7 +10,7 @@ function ShowFamiliar() {
     let navigate = useNavigate();
 
     useEffect(() => {
-        axios.get(`http://localhost:3001/users/familiares/show/${id}`,
+        axios.get(`${baseURL}/users/familiares/show/${id}`,
             {headers: {accessToken: localStorage.getItem("accessToken"),}})
             .then((response) => {
                 setFamiliar(response.data)

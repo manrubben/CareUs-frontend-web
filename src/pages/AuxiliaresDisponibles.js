@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import {useParams, useNavigate} from "react-router-dom";
-
+import {baseURL} from "../helpers/IPConfig";
 
 function AuxiliaresDisponibles() {
 
@@ -10,7 +10,7 @@ function AuxiliaresDisponibles() {
     let navigate = useNavigate();
 
     useEffect(() => {
-        axios.get(`http://localhost:3001/users/personaDependiente/${id}/listAuxiliaresDisponibles`,
+        axios.get(`${baseURL}/users/personaDependiente/${id}/listAuxiliaresDisponibles`,
             {headers: {accessToken: localStorage.getItem("accessToken"),}})
             .then((response) => {
                 setListOfAuxiliaresDisponibles(response.data);
@@ -19,7 +19,7 @@ function AuxiliaresDisponibles() {
 
 
     const addAuxiliar = (userId, personaDependienteId) => {
-        axios.post("http://localhost:3001/userPersonaDependiente/addTo",
+        axios.post(`${baseURL}/userPersonaDependiente/addTo`,
             {userId: userId, personaDependienteId: personaDependienteId},
             {headers: {accessToken: localStorage.getItem("accessToken"),}})
             .then(() => {

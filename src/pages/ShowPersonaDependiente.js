@@ -7,6 +7,8 @@ import * as Yup from "yup";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import FamiliaresAsignados from "./FamiliaresAsignados";
 import Swal from "sweetalert2";
+import {baseURL} from "../helpers/IPConfig";
+
 
 function ShowPersonaDependiente() {
 
@@ -30,41 +32,41 @@ function ShowPersonaDependiente() {
     useEffect(() => {
 
 
-        axios.get(`http://localhost:3001/observaciones/notificacion/${id}`,
+        axios.get(`${baseURL}/observaciones/notificacion/${id}`,
             {headers: {accessToken: localStorage.getItem("accessToken"),}})
             .then((response) => {
                 setNotificacion(response.data);
 
             });
 
-        axios.get(`http://localhost:3001/avisos/notificacion/${id}`,
+        axios.get(`${baseURL}/avisos/notificacion/${id}`,
             {headers: {accessToken: localStorage.getItem("accessToken"),}})
             .then((response) => {
                 setNotificacionAviso(response.data);
 
             });
 
-        axios.get(`http://localhost:3001/personasDependientes/show/${id}`,
+        axios.get(`${baseURL}/personasDependientes/show/${id}`,
             {headers: {accessToken: localStorage.getItem("accessToken"),}})
             .then((response) => {
                 setPersonaDependiente(response.data);
             });
 
 
-        axios.get(`http://localhost:3001/registrosDiarios/showRegistro/${id}?fecha=${fechaString}`,
+        axios.get(`${baseURL}/registrosDiarios/showRegistro/${id}?fecha=${fechaString}`,
             {headers: {accessToken: localStorage.getItem("accessToken"),}})
             .then((response) => {
                 setRegistro(response.data);
 
             });
 
-        axios.get(`http://localhost:3001/notificaciones/createNotificacionMedicacion/${id}`,
+        axios.get(`${baseURL}/notificaciones/createNotificacionMedicacion/${id}`,
             {headers: {accessToken: localStorage.getItem("accessToken"),}})
             .then((response) => {
                 console.log(response.data);
         });
 
-        axios.get(`http://localhost:3001/notificaciones/notificacionMedicacion/${id}`,
+        axios.get(`${baseURL}/notificaciones/notificacionMedicacion/${id}`,
             {headers: {accessToken: localStorage.getItem("accessToken"),}})
             .then((response) => {
                 setNotificacionMedicacion(response.data);
@@ -108,7 +110,7 @@ function ShowPersonaDependiente() {
             }) .then(resultado => {
                 if (resultado.value) {
 
-                    axios.get(`http://localhost:3001/notificaciones/updateDia/${id}`,
+                    axios.get(`${baseURL}/notificaciones/updateDia/${id}`,
                         {headers: {accessToken: localStorage.getItem("accessToken"),}})
                         .then((response) => {
                             console.log(response.data);
@@ -131,7 +133,7 @@ function ShowPersonaDependiente() {
             }) .then(resultado => {
                 if (resultado.value) {
 
-                    axios.get(`http://localhost:3001/notificaciones/updateTarde/${id}`,
+                    axios.get(`${baseURL}/notificaciones/updateTarde/${id}`,
                         {headers: {accessToken: localStorage.getItem("accessToken"),}})
                         .then((response) => {
                             console.log(response.data);
@@ -155,7 +157,7 @@ function ShowPersonaDependiente() {
             })  .then(resultado => {
                 if (resultado.value) {
 
-                    axios.get(`http://localhost:3001/notificaciones/updateNoche/${id}`,
+                    axios.get(`${baseURL}/notificaciones/updateNoche/${id}`,
                         {headers: {accessToken: localStorage.getItem("accessToken"),}})
                         .then((response) => {
                             console.log(response.data);
@@ -186,7 +188,7 @@ function ShowPersonaDependiente() {
 
 
     const addObservacion = (data) => {
-        axios.post("http://localhost:3001/observaciones/createObservacion", data,
+        axios.post(`${baseURL}/observaciones/createObservacion`, data,
             {headers: {accessToken: localStorage.getItem("accessToken"),}})
             .then((response) => {
                 navigate(`/personaDependiente/${id}/observaciones`)
@@ -212,7 +214,7 @@ function ShowPersonaDependiente() {
 
 
     const addAviso = (data) => {
-        axios.post("http://localhost:3001/avisos/createAviso", data,
+        axios.post(`${baseURL}/avisos/createAviso`, data,
             {headers: {accessToken: localStorage.getItem("accessToken"),}})
             .then((response) => {
                 navigate(`/personaDependiente/${id}/avisos`)

@@ -3,6 +3,7 @@ import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {Formik, Form, Field, ErrorMessage} from "formik";
 import * as Yup from "yup";
+import {baseURL} from "../helpers/IPConfig";
 
 function CreatePersonaDependiente() {
 
@@ -34,7 +35,7 @@ function CreatePersonaDependiente() {
     });
 
     const addPersonaDependiente = (data) => {
-        axios.post("http://localhost:3001/personasDependientes/create", data,
+        axios.post(`${baseURL}/personasDependientes/create`, data,
             {headers: {accessToken: localStorage.getItem("accessToken"),}})
             .then((response) => {
                 navigate('/coordinador/personasDependientes')

@@ -2,6 +2,8 @@ import {useNavigate, useParams} from "react-router-dom";
 import React, {useContext, useEffect, useState} from "react";
 import axios from "axios";
 import {AuthContext} from "../helpers/AuthContext";
+import {baseURL} from "../helpers/IPConfig";
+
 
 function ShowAuxiliar() {
     let { id } = useParams();
@@ -10,7 +12,7 @@ function ShowAuxiliar() {
     const { authState } = useContext(AuthContext);
 
     useEffect(() => {
-        axios.get(`http://localhost:3001/users/auxiliares/show/${id}`,
+        axios.get(`${baseURL}/users/auxiliares/show/${id}`,
             {headers: {accessToken: localStorage.getItem("accessToken"),}})
             .then((response) => {
                 setAuxiliar(response.data)

@@ -2,6 +2,7 @@ import React, {useState, useEffect, useContext} from "react";
 import axios from "axios";
 import {useParams, useNavigate} from "react-router-dom";
 import {AuthContext} from "../helpers/AuthContext";
+import {baseURL} from "../helpers/IPConfig";
 
 
 function AuxiliaresAsignados() {
@@ -11,7 +12,7 @@ function AuxiliaresAsignados() {
     const { authState } = useContext(AuthContext);
 
     useEffect(() => {
-        axios.get(`http://localhost:3001/userPersonaDependiente/list/${id}`,
+        axios.get(`${baseURL}/userPersonaDependiente/list/${id}`,
             {headers: {accessToken: localStorage.getItem("accessToken"),}})
             .then((response) => {
                 setListOfAuxiliaresAsignados(response.data)
@@ -21,7 +22,7 @@ function AuxiliaresAsignados() {
     }, []);
 
     const deleteUserPersonaDependiente = (auxiliarId, id) => {
-        axios.delete("http://localhost:3001/userPersonaDependiente/delete",
+        axios.delete(`${baseURL}/userPersonaDependiente/delete`,
             {headers: {accessToken: localStorage.getItem("accessToken")},
             data: {
                 userId: auxiliarId,

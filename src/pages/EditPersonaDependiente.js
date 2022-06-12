@@ -3,7 +3,7 @@ import axios from "axios";
 import {useNavigate, useParams} from "react-router-dom";
 import * as Yup from "yup";
 import {ErrorMessage, Field, Form, Formik} from "formik";
-
+import {baseURL} from "../helpers/IPConfig";
 
 function EditPersonaDependiente() {
 
@@ -12,7 +12,7 @@ function EditPersonaDependiente() {
     let navigate = useNavigate();
 
     useEffect(() => {
-        axios.get(`http://localhost:3001/personasDependientes/show/${id}`,
+        axios.get(`${baseURL}/personasDependientes/show/${id}`,
             {headers: {accessToken: localStorage.getItem("accessToken"),}})
             .then((response) => {
                 setPersonaDependiente(response.data);
@@ -36,7 +36,7 @@ function EditPersonaDependiente() {
     });
 
     const editPersonaDependiente = (data) => {
-        axios.put(`http://localhost:3001/personasDependientes/edit/${id}`, data,
+        axios.put(`${baseURL}/personasDependientes/edit/${id}`, data,
             {headers: {accessToken: localStorage.getItem("accessToken"),}})
             .then((response) => {
                     navigate(`/personaDependiente/${id}`)
@@ -44,7 +44,7 @@ function EditPersonaDependiente() {
     }
 
     const deletePersonaDependiente = () => {
-        axios.delete(`http://localhost:3001/personasDependientes/delete/${id}`,
+        axios.delete(`${baseURL}/personasDependientes/delete/${id}`,
             {headers: {accessToken: localStorage.getItem("accessToken"),}})
             .then((response) => {
                 if (response.data.error) {

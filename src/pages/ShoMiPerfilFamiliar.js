@@ -1,6 +1,7 @@
 import React, {useContext, useEffect, useState} from "react";
 import axios from "axios";
 import {AuthContext} from "../helpers/AuthContext";
+import {baseURL} from "../helpers/IPConfig";
 
 
 function ShowMiPerfilFamiliar() {
@@ -10,7 +11,7 @@ function ShowMiPerfilFamiliar() {
     const id = authState.id;
 
     useEffect(() => {
-        axios.get(`http://localhost:3001/users/familiares/show/${id}`,
+        axios.get(`${baseURL}/users/familiares/show/${id}`,
             {headers: {accessToken: localStorage.getItem("accessToken"),}})
             .then((response) => {
                 setFamiliar(response.data)

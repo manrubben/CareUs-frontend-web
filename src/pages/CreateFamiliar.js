@@ -2,6 +2,7 @@ import axios from "axios";
 import {useNavigate, useParams} from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import {baseURL} from "../helpers/IPConfig";
 
 function CreateFamiliar() {
 
@@ -31,7 +32,7 @@ function CreateFamiliar() {
 
     const addFamiliar = async (data) => {
 
-        await axios.post(`http://localhost:3001/users/create`, data,
+        await axios.post(`${baseURL}/users/create`, data,
             {headers: {accessToken: localStorage.getItem("accessToken"),}})
             .then((response) => {
                 if(response.data.error) {
@@ -39,7 +40,7 @@ function CreateFamiliar() {
                 }
             })
 
-        await axios.post(`http://localhost:3001/userPersonaDependiente/personaDependiente/${id}/addFamiliar`, data,
+        await axios.post(`${baseURL}/userPersonaDependiente/personaDependiente/${id}/addFamiliar`, data,
             {headers: {accessToken: localStorage.getItem("accessToken"),}})
             .then((response) => {
                 if(response.data.error) {

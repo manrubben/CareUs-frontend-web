@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
+import {baseURL} from "../helpers/IPConfig";
+
 
 function GestionarAuxiliares() {
 
@@ -8,7 +10,7 @@ function GestionarAuxiliares() {
     let navigate = useNavigate();
 
     useEffect(() => {
-        axios.get("http://localhost:3001/users/auxiliares/list",
+        axios.get(`${baseURL}/users/auxiliares/list`,
             {headers: {accessToken: localStorage.getItem("accessToken"),}})
             .then((response) => {
                 setListOfAuxiliares(response.data);

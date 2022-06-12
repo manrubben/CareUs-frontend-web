@@ -5,6 +5,8 @@ import '../App.css'
 import {useNavigate} from "react-router-dom";
 import {AuthContext} from "../helpers/AuthContext";
 import App from "../App";
+import {baseURL} from "../helpers/IPConfig";
+
 
 function PersonasDependientesAsignadas() {
 
@@ -14,11 +16,10 @@ function PersonasDependientesAsignadas() {
 
     useEffect(() => {
 
-        axios.get(`http://localhost:3001/personasDependientes/personasAsignadas/`,
+        axios.get(`${baseURL}/personasDependientes/personasAsignadas/`,
             {headers: {accessToken: localStorage.getItem("accessToken"),}})
             .then((response) => {
                 setListOfPersonasDependientes(response.data);
-                //console.log(listOfPersonasDependientes);
             });
     }, []);
 

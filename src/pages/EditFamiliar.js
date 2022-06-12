@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import * as Yup from "yup";
 import {ErrorMessage, Field, Form, Formik} from "formik";
+import {baseURL} from "../helpers/IPConfig";
 
 
 function EditFamiliar() {
@@ -12,7 +13,7 @@ function EditFamiliar() {
     let navigate = useNavigate();
 
     useEffect(() => {
-        axios.get(`http://localhost:3001/users/familiares/show/${id}`,
+        axios.get(`${baseURL}/users/familiares/show/${id}`,
             {headers: {accessToken: localStorage.getItem("accessToken"),}})
             .then((response) => {
                 setFamiliar(response.data)
@@ -38,7 +39,7 @@ function EditFamiliar() {
 
     const editFamiliar = (data) => {
 
-        axios.put(`http://localhost:3001/users/familiares/edit/${id}`, data,
+        axios.put(`${baseURL}/users/familiares/edit/${id}`, data,
             {headers: {accessToken: localStorage.getItem("accessToken"),}})
             .then((response) => {
                 if (response.data.error) {
@@ -50,7 +51,7 @@ function EditFamiliar() {
     }
 
     const deleteFamiliar = () => {
-        axios.delete(`http://localhost:3001/users/familiares/delete/${id}`,
+        axios.delete(`${baseURL}/users/familiares/delete/${id}`,
             {headers: {accessToken: localStorage.getItem("accessToken"),}})
             .then((response) => {
                 if (response.data.error) {

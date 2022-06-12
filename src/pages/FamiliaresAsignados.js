@@ -2,6 +2,8 @@ import React, {useState, useEffect, useContext} from "react";
 import axios from "axios";
 import {useParams, useNavigate} from "react-router-dom";
 import {AuthContext} from "../helpers/AuthContext";
+import {baseURL} from "../helpers/IPConfig";
+
 
 function FamiliaresAsignados() {
     let { id } = useParams();
@@ -10,7 +12,7 @@ function FamiliaresAsignados() {
     const { authState } = useContext(AuthContext);
 
     useEffect(() => {
-        axios.get(`http://localhost:3001/userPersonaDependiente/familiares/list/${id}`,
+        axios.get(`${baseURL}/userPersonaDependiente/familiares/list/${id}`,
             {headers: {accessToken: localStorage.getItem("accessToken"),}})
             .then((response) => {
                 setListOfFamiliaresAsignados(response.data)
@@ -19,7 +21,7 @@ function FamiliaresAsignados() {
 
 
     const deleteUserPersonaDependiente = async (familiarId, id) => {
-        await axios.delete("http://localhost:3001/userPersonaDependiente/delete",
+        await axios.delete(`${baseURL}/userPersonaDependiente/delete`,
             {headers: {accessToken: localStorage.getItem("accessToken")},
                 data: {
                     userId: familiarId,
@@ -33,7 +35,7 @@ function FamiliaresAsignados() {
                 )
             })
 
-        await axios.delete(`http://localhost:3001/users/familiares/delete/${familiarId}`,
+        await axios.delete(`${baseURL}/users/familiares/delete/${familiarId}`,
             {headers: {accessToken: localStorage.getItem("accessToken"),}})
             .then((response) => {
                 if(response.data.error) {

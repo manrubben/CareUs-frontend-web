@@ -2,7 +2,7 @@ import {useParams} from "react-router-dom";
 import React, {useContext, useEffect, useState} from "react";
 import axios from "axios";
 import {AuthContext} from "../helpers/AuthContext";
-
+import {baseURL} from "../helpers/IPConfig";
 
 
 function Avisos() {
@@ -13,7 +13,7 @@ function Avisos() {
     const { authState } = useContext(AuthContext);
 
     useEffect(() => {
-        axios.get(`http://localhost:3001/avisos/showAvisos/${id}`,
+        axios.get(`${baseURL}/avisos/showAvisos/${id}`,
             {headers: {accessToken: localStorage.getItem("accessToken"),}})
             .then((response) => {
             setAvisos(response.data);
@@ -21,7 +21,7 @@ function Avisos() {
     }, []);
 
     const deleteAviso = (id) => {
-        axios.delete(`http://localhost:3001/avisos/deleteAviso/${id}`, {
+        axios.delete(`${baseURL}/avisos/deleteAviso/${id}`, {
                 headers: { accessToken: localStorage.getItem("accessToken") },
             })
             .then(() => {

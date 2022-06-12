@@ -4,6 +4,7 @@ import axios from "axios";
 import {useParams} from "react-router-dom";
 import jsPDF from "jspdf";
 import {AuthContext} from "../helpers/AuthContext";
+import {baseURL} from "../helpers/IPConfig";
 
 
 function ShowRegistro() {
@@ -20,13 +21,13 @@ function ShowRegistro() {
     console.log(fechaString);
 
     useEffect(() => {
-        axios.get(`http://localhost:3001/registrosDiarios/showRegistro/${id}?fecha=${fechaString}`,
+        axios.get(`${baseURL}/registrosDiarios/showRegistro/${id}?fecha=${fechaString}`,
             {headers: {accessToken: localStorage.getItem("accessToken"),}})
             .then((response) => {
                 setRegistro(response.data);
             });
 
-         axios.get(`http://localhost:3001/registrosDiarios/showRegistrosMes/${id}?mes=${mes}`,
+         axios.get(`${baseURL}/registrosDiarios/showRegistrosMes/${id}?mes=${mes}`,
             {headers: {accessToken: localStorage.getItem("accessToken"),}})
             .then((response) => {
                 setRegistrosMes(response.data);
@@ -34,7 +35,7 @@ function ShowRegistro() {
             });
 
 
-        axios.get(`http://localhost:3001/personasDependientes/show/${id}`,
+        axios.get(`${baseURL}/personasDependientes/show/${id}`,
             {headers: {accessToken: localStorage.getItem("accessToken"),}})
             .then((response) => {
                 setPersonaDependiente(response.data);
@@ -46,7 +47,7 @@ function ShowRegistro() {
     }, [])
 
     const showRegistro = async () => {
-        await axios.get(`http://localhost:3001/registrosDiarios/showRegistro/${id}?fecha=${fechaString}`,
+        await axios.get(`${baseURL}/registrosDiarios/showRegistro/${id}?fecha=${fechaString}`,
             {headers: {accessToken: localStorage.getItem("accessToken"),}})
             .then((response) => {
                 setRegistro(response.data);

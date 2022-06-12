@@ -3,6 +3,7 @@ import axios from "axios";
 import {useEffect, useState} from "react";
 import * as Yup from "yup";
 import {ErrorMessage, Field, Form, Formik} from "formik";
+import {baseURL} from "../helpers/IPConfig";
 
 function EditAuxiliar() {
 
@@ -11,7 +12,7 @@ function EditAuxiliar() {
     let navigate = useNavigate();
 
     useEffect(() => {
-        axios.get(`http://localhost:3001/users/auxiliares/show/${id}`,
+        axios.get(`${baseURL}/users/auxiliares/show/${id}`,
             {headers: {accessToken: localStorage.getItem("accessToken"),}})
             .then((response) => {
                 setAuxiliar(response.data)
@@ -37,7 +38,7 @@ function EditAuxiliar() {
 
     const editAuxiliar = (data) => {
 
-        axios.put(`http://localhost:3001/users/auxiliares/edit/${id}`, data,
+        axios.put(`${baseURL}/users/auxiliares/edit/${id}`, data,
             {headers: {accessToken: localStorage.getItem("accessToken"),}})
             .then((response) => {
                     navigate(`/auxiliar/${id}`)
@@ -45,7 +46,7 @@ function EditAuxiliar() {
     }
 
     const deleteAuxiliar = () => {
-        axios.delete(`http://localhost:3001/users/auxiliares/delete/${id}`,
+        axios.delete(`${baseURL}/users/auxiliares/delete/${id}`,
             {headers: {accessToken: localStorage.getItem("accessToken"),}})
             .then((response) => {
                 if (response.data.error) {

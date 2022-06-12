@@ -2,6 +2,8 @@ import React, {useContext, useState} from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../helpers/AuthContext";
+import {baseURL} from "../helpers/IPConfig";
+
 
 function Login() {
     const [username, setUsername] = useState("");
@@ -12,7 +14,7 @@ function Login() {
 
     const login = () => {
         const data = { username: username, password: password };
-        axios.post("http://localhost:3001/users/login", data).then((response) => {
+        axios.post(`${baseURL}/users/login`, data).then((response) => {
             if(response.data.error) {
                 alert(response.data.error);
             } else {

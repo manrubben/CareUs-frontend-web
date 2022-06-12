@@ -4,6 +4,8 @@ import {useParams, useNavigate} from "react-router-dom";
 import {AuthContext} from "../helpers/AuthContext";
 import * as Yup from "yup";
 import {ErrorMessage, Field, Form, Formik} from "formik";
+import {baseURL} from "../helpers/IPConfig";
+
 
 function Registros() {
 
@@ -61,7 +63,7 @@ function Registros() {
 
     const crearRegistro = async (data) => {
 
-        await axios.post("http://localhost:3001/registrosDiarios/addRegistro", data,
+        await axios.post(`${baseURL}/registrosDiarios/addRegistro`, data,
             {headers: {accessToken: localStorage.getItem("accessToken"),}})
             .then((response) => {
                 if(response.data.error) {
@@ -69,7 +71,7 @@ function Registros() {
                 }
             })
 
-         axios.post(`http://localhost:3001/registrosDiarios/addAuxiliarRegistro/${id}`, data2,
+         axios.post(`${baseURL}/registrosDiarios/addAuxiliarRegistro/${id}`, data2,
             {headers: {accessToken: localStorage.getItem("accessToken"),}})
             .then((response) => {
 

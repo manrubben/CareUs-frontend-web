@@ -2,7 +2,7 @@ import {useParams} from "react-router-dom";
 import React, {useContext, useEffect, useState} from "react";
 import axios from "axios";
 import {AuthContext} from "../helpers/AuthContext";
-
+import {baseURL} from "../helpers/IPConfig";
 
 
 function Observaciones() {
@@ -13,7 +13,7 @@ function Observaciones() {
     const { authState } = useContext(AuthContext);
 
     useEffect(() => {
-        axios.get(`http://localhost:3001/observaciones/showObservaciones/${id}`,
+        axios.get(`${baseURL}/observaciones/showObservaciones/${id}`,
             {headers: {accessToken: localStorage.getItem("accessToken"),}})
             .then((response) => {
             setObservaciones(response.data);
@@ -22,7 +22,7 @@ function Observaciones() {
 
     const deleteObservacion = (id) => {
         axios
-            .delete(`http://localhost:3001/observaciones/deleteObservacion/${id}`, {
+            .delete(`${baseURL}/observaciones/deleteObservacion/${id}`, {
                 headers: { accessToken: localStorage.getItem("accessToken") },
             })
             .then(() => {

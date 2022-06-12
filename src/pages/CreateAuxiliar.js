@@ -3,6 +3,7 @@ import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import {baseURL} from "../helpers/IPConfig";
 
 function CreateAuxiliar() {
 
@@ -37,7 +38,7 @@ function CreateAuxiliar() {
     });
 
     const addAuxiliar = (data) => {
-        axios.post("http://localhost:3001/users/create", data,
+        axios.post(`${baseURL}/users/create`, data,
             {headers: {accessToken: localStorage.getItem("accessToken"),}})
             .then((response) => {
                     navigate('/coordinador/auxiliares')
