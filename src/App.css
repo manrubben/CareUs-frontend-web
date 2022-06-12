@@ -1,0 +1,431 @@
+.App {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.App button {
+  cursor: pointer;
+}
+
+/* Gestionar personas dependientes, auxiliares y familiares */
+
+.App h1 {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+@media all and (max-width: 800px) {
+  .App h1 {
+    text-align: center;
+    margin-left: 2vw;
+    margin-right: 2vw;
+  }
+
+  .App .post {
+    width: 60vw;
+  }
+
+  .App .post .title {
+    text-align: center;
+  }
+
+  .App button {
+    width: 30vw;
+  }
+
+
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.post {
+  width: 400px;
+  height: 100px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  border: 1px solid lightgray;
+  font-family: Arial, Helvetica, sans-serif;
+
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.post:hover {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  cursor: pointer;
+}
+.post .title {
+  flex: 20%;
+  border-bottom: 1px solid lightgray;
+  background-color: dodgerblue;
+  display: grid;
+  place-content: center;
+  color: white;
+}
+
+.post .body {
+  flex: 60%;
+  display: grid;
+  place-content: center;
+}
+
+.post .footer {
+  flex: 20%;
+  border-top: 1px solid lightgray;
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+  background-color: dodgerblue;
+  color: white;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+/* CREATE POST PAGE CSS */
+
+.createPostPage {
+  font-family: Arial, Helvetica, sans-serif;
+  width: 100vw;
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 500px;
+  height: auto;
+  padding: 20px;
+  border: 5px solid dodgerblue;
+  border-radius: 5px;
+  margin-bottom: 30px;
+}
+
+.formContainer #inputCreatePost {
+  height: 40px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 2px solid grey;
+  border-radius: 5px;
+  padding-left: 10px;
+  font-size: 20px;
+}
+
+.formContainer button {
+  margin-top: 15px;
+  height: 40px;
+  border: none;
+  background-color: lightskyblue;
+  border-radius: 5px;
+  color: white;
+}
+
+.formContainer button:hover {
+  cursor: pointer;
+  background-color: dodgerblue;
+}
+
+span {
+  color: red;
+}
+
+
+
+/* INDIVIDUAL POST */
+.postPage {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+}
+
+.leftSide {
+  flex: 50%;
+  height: calc(100vh - 70px);
+  display: grid;
+  place-items: center;
+}
+
+.rightSide {
+  flex: 50%;
+  height: calc(100vh - 70px);
+  display: grid;
+  place-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.rightSide .addCommentContainer {
+  flex: 20%;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  margin-top: 25px;
+}
+
+.addCommentContainer input,
+button {
+  width: 200px;
+  height: 50px;
+  border-radius: 8px;
+  border: none;
+}
+
+.addCommentContainer button {
+  background-color: dodgerblue;
+  color: white;
+}
+
+.addCommentContainer input {
+  border: 2px solid dodgerblue;
+}
+
+.rightSide .listOfComments {
+  flex: 80%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.listOfComments .comment {
+  width: 70%;
+  height: auto;
+  padding: 30px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+#individual {
+  height: 500px;
+  width: 600px;
+}
+
+#individual .title,
+#individual .footer {
+  font-size: 30px;
+}
+
+#individual .body {
+  font-size: 25px;
+}
+
+/* LOGIN */
+
+.loginContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  padding-top: 100px;
+}
+
+.loginContainer input{
+  width: 300px;
+  height: 30px;
+  border-radius: 8px;
+  margin: 10px;
+  border: 2px solid dodgerblue;
+  padding: 5px;
+}
+
+.loginContainer button {
+  width: 100px;
+  height: 30px;
+  border-radius: 8px;
+  border: none;
+  margin: 10px;
+  background-color: dodgerblue;
+  color: white;
+  cursor: pointer
+}
+
+@media all and (max-width: 800px) {
+  .loginContainer input {
+    width: 45vw;
+  }
+
+  .loginContainer button {
+    width: 20vw;
+  }
+}
+
+
+/* Show persona dependiente, auxiliar y familiar */
+
+.datos-persona-dependiente {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 500px;
+  height: auto;
+  padding: 20px;
+  border: 5px solid dodgerblue;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.datos-auxiliar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 500px;
+  height: auto;
+  padding: 20px;
+  border: 5px solid dodgerblue;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.datos-familiar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 500px;
+  height: auto;
+  padding: 20px;
+  border: 5px solid dodgerblue;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.auxiliar-asignado {
+  display: flex;
+  align-items: center;
+}
+
+.auxiliar-asignado button {
+  margin-left: 10px;
+}
+
+.familiar-asignado {
+  display: flex;
+  align-items: center;
+}
+
+.familiar-asignado button {
+  margin-left: 10px;
+}
+
+.App .add-familiar-button {
+  margin-bottom: 50px;
+}
+
+.App .list-observaciones-button {
+  margin-bottom: 50px;
+}
+
+@media all and (max-width: 800px) {
+  .datos-persona-dependiente {
+    width: 70vw;
+  }
+
+  .datos-auxiliar {
+    width: 70vw;
+  }
+
+  .datos-familiar {
+    width: 70vw;
+  }
+
+  .formContainer {
+    width: 70vw;
+  }
+}
+
+/* Añadir auxiliar a una persona dependiente */
+
+.auxiliar-disponible {
+  display: flex;
+  align-items: center;
+}
+
+.auxiliar-disponible button {
+  margin-left: 10px;
+}
+
+/* Registros diarios */
+
+.init-registro-diario {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.edit-registro-diario {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.show-registros {
+  margin-top: 10px;
+}
+
+.no-registro {
+  margin-top: 30px;
+}
+
+.datos-registro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 500px;
+  height: auto;
+  padding: 20px;
+  border: 5px solid dodgerblue;
+  border-radius: 5px;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+.search-button {
+  margin-top: 20px;
+}
+
+.modificar-registro-diario-button {
+  margin-bottom: 30px;
+}
+
+@media all and (max-width: 800px) {
+  .datos-registro {
+    width: 70vw;
+  }
+
+  .datepicker {
+    margin-left: 5vw;
+    margin-right: 5vw;
+  }
+}
+
+/* Observaciones */
+
+.datos-observacion {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 500px;
+  height: auto;
+  padding: 20px;
+  border: 5px solid dodgerblue;
+  border-radius: 5px;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+@media all and (max-width: 800px) {
+  .datos-observacion {
+    width: 70vw;
+  }
+
+}
