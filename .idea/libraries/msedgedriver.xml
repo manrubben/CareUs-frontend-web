@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="msedgedriver">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/node_modules/selenium-standalone/.selenium/chromiumedgedriver/latest-x64/msedgedriver.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
