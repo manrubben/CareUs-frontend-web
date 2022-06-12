@@ -10,6 +10,9 @@ branches:
   only:
     - main
 
+before_deploy:
+  - rvm $(travis_internal_ruby) --fuzzy do ruby -S gem install faraday -v 1.10.0
+
 deploy:
   provider: heroku
   api_key: f00dd0ed-c091-454b-a65d-345930164663
